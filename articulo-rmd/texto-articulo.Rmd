@@ -9,7 +9,7 @@ output: html_document
 ```{r setup, include = FALSE}
 # Opciones de chunks
 
-knitr::opts_chunk$set(echo = TRUE, include = F)
+knitr::opts_chunk$set(echo = F, include = F)
 
 # Cargar librerias
 
@@ -42,11 +42,12 @@ theme_article_ds<-
   theme_bw() +
   theme(panel.grid = element_blank(),
         axis.text.y = element_blank(),
-        axis.ticks = element_blank()) 
+        axis.ticks = element_blank(),
+        plot.caption = element_text(hjust = 0, face = 'italic')) 
 
 ```
 
-```{r grafico-participacion-protesta, include = T, echo = F}
+```{r grafico-participacion-protesta, include = T, echo = F, fig.align = 'center'}
 ## 1. Participación en protestas
 
 # Debemos construir una sola variable en la base de datos que denote 1 si es que se participó en protest, 0 de otra forma
@@ -93,10 +94,11 @@ ggplot(prot_df, aes(x = year, y = protest))+
   geom_text(aes(label = round(protest, 4)*100),
                 size = 3,
                 vjust = 5)+
-  labs(x = 'Ronda de la Encuesta AB',
-       y = 'Porcentaje de población en edad de votar',
-       title = 'Participación en una protesta en los últimos 12 meses en Ecuador',
-       subtitle = 'Datos del AB (LAPOP). Barras representan intervalos de confianza al 95%. \nLíneas punteadas representan protestas de importancia en el país.')+
+  labs(x = '',
+       y = '% de personas mayores a 16 que han protestado',
+       title = 'Participación en protestas del Ecuador 2006-2019',
+       subtitle = '¿En los últimos 12 meses ha participado en una manifestación o protesta pública?',
+       caption = 'Nota: Datos del Barómetro de las Américas. Barras representan intervalos de confianza al 95% con errores ajustados por\ndiseño muestral complejo. Líneas punteadas representan protestas de importancia en el país. Encuestas realizadas de \nenero a marzo de cada año salvo ronda 2016, realizada en nov. 2016 - ene. 2017.')+
   theme_article_ds
 ```
 
