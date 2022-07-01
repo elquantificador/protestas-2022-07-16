@@ -1,0 +1,101 @@
+---
+title: "Una mirada a los datos sobre la protesta social en Ecuador"
+author: "Daniel Sánchez"
+date: "Julio 2022"
+output: html_document
+bibliography: refs-article-protests.bib
+---
+
+A mediados de junio 2022, la Confederación de Nacionalidades Indígenas del Ecuador (CONAIE) convocó a una movilización [@Pazmino.2022]
+
+```{r setup, include = FALSE}
+# Opciones de chunks
+
+knitr::opts_chunk$set(echo = TRUE, include = F)
+
+# Cargar librerias
+
+library(survey)
+library(tidyverse)
+
+# Cargar datos
+
+load('../data/rdata/LAPOP 2004-2019 Manipulated Dataframe.Rdata')
+
+# Realiza el survey design 2004-2019
+
+lapop_des<-svydesign(ids = ~ upm, 
+                     strata = ~ estratopri, 
+                     weights = ~ weight1500, 
+                     nest = TRUE,
+                     na.action = 'na.exclude',
+                     data = df)
+
+# Definimos colores en HEX para los gráficos
+
+quant_blue<-'#09A4CC'
+quant_grey<-'#5C7C94'
+quant_orange<-'#F8754D'
+quant_red<-'#F44D54'
+
+# Creamos un theme para ggplot2
+
+theme_article_ds<-
+  theme_bw() +
+  theme(panel.grid = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks = element_blank()) 
+
+```
+
+
+```{r grafico-participacion-protesta, include = T, echo = F}
+# Debemos construir una sola variable en la base de datos que denote 1 si es que se participó en protest, 0 de otra forma
+
+# De 2010 a 2019 se tiene prot3
+
+# De 2006 a 2008 se tiene dos preguntas diferentes. 2004 no tiene pregunta sobre participación en protesta
+
+# En el script de manipulación, he unificado las variables prot1, prot2 y prot3 en una sola (prot3)
+
+# Por ende, tabulamos esa variable a lo largo del tiempo 
+
+prot_time<-
+  svyby(~ protest,
+        ~ year,
+        design = lapop_des,
+        svymean,
+        na.rm = T)
+
+# Creamos una base de datos "tidy" para esto
+
+prot_df<-
+  prot_time %>%
+  filter(protest > 0) %>% 
+  as.data.frame()
+
+rownames(prot_df)<-NULL
+
+# Ahora si nuestro gráfico
+
+ggplot(prot_df, aes(x = year, y = protest))+
+  geom_col(fill = quant_blue,
+           color = 'black', 
+           width = 0.7)+
+  geom_vline(xintercept = 0.5, linetype = 'dotted', color = quant_red, size = 1.25)+
+  geom_vline(xintercept = 7.5, linetype = 'dotted', color = quant_red, size = 1.25)+
+  geom_vline(xintercept = 3.2, linetype = 'dotted', color = quant_red, size = 1.25)+
+  geom_vline(xintercept = 5.55, linetype = 'dotted', color = quant_red, size = 1.25)+
+  geom_errorbar(aes(ymin = protest - 1.96*se,
+                    ymax = protest + 1.96*se),
+                width = 0.3)+
+  geom_text(aes(label = round(protest, 4)*100),
+                size = 3,
+                vjust = 5)+
+  labs(x = 'Ronda de la Encuesta',
+       y = 'Porcentaje de población en edad de votar',
+       title = 'Participación en una protesta en los últimos 12 meses en Ecuador',
+       subtitle = 'Datos del Barómetro de las Américas (LAPOP). Barras representan intervalos de confianza al 95%. \nLíneas punteadas representan protestas de importancia en el país.')+
+  theme_article_ds
+```
+

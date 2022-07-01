@@ -26,6 +26,7 @@ library(car) # for recode
 
 # These are the dta dataframes with no value labels for each year
 
+df_2021<-read_dta('data/dta/ecu2021.dta')
 df_2019<-read_dta('data/dta/ecu2019.dta')
 df_2016<-read_dta('data/dta/ecu2016.dta')
 df_2014<-read_dta('data/dta/ecu2014.dta')
@@ -52,7 +53,6 @@ dfc_2004<-read_csv('data/csv/df2004.csv', show_col_types = F)
 load('data/rdata/LAPOP 2004-2019 Merged.Rdata') 
 
 # This one I loaded into a separate script and then saved as an .RData file, because it was very heavy and GitHub wouldn't have it.
-
 
 # ================================================= Starting with 2019 =============================================================
 
@@ -387,6 +387,10 @@ df_2008$party<-ifelse(df_2008$vb11 == 913,  'PAIS',
                              ifelse(df_2008$vb11 == 903, 'PSC',
                                     ifelse(df_2008$vb11 == 907, 'PK' ,'Others')))) %>% as.factor()
 
+# Protest participation --------------------------------------------------------------------------------------------------
+
+df_2008$prot3<-ifelse(df_2008$prot2 == 1 | df_2008$prot2 == 2, 1,0)
+
 # Weights ----------------------------------------------------------------------------------------------------------------
 
 # Create the weight variable for 2016 so that it appends correctly to the merged dataframe
@@ -443,6 +447,10 @@ df_2006$fecha<-NA
 # Create the weight variable for 2016 so that it appends correctly to the merged dataframe
 
 df_2006$weight1500<- (df_2006$wt * 1500)/(nrow(df_2006))
+
+# Protest participation --------------------------------------------------------------------------------------------------
+
+df_2006$prot3<-ifelse(df_2006$prot1 == 1 | df_2006$prot1 == 2, 1,0)
 
 # Sampling design --------------------------------------------------------------------------------------------------------
 
@@ -534,6 +542,32 @@ df_2004_ec$corr_school<-ifelse(df_2004_ec$exc16 == 'Yes', 1,
 # Append the 2004 observations to the base, giving NA values for all columns not included in both
 
 df<-bind_rows(df,df_2004_ec)
+
+# ================================================ Append 2021 ========================================================
+
+# Here I append the 2021 dataframe. I do it here instead of starting with this df so I can better identify errors.
+
+# Preliminary manipulation -----------------------------------------------------------------------------------------------
+
+# Create the year variable 
+
+df_2021$year <- 2021
+
+# Change the format of the idnum variable so no errors happen in the bind_rows() calll
+
+df_2021$idnum<- as.character(df_2021$idnum)
+
+# Weights ----------------------------------------------------------------------------------------------------------------
+
+# Create the weight variable for 2016 so that it appends correctly to the merged dataframe
+
+df_2021$weight1500<- (df_2021$wt * 1500)/(nrow(df_2021))
+
+# Append -----------------------------------------------------------------------------------------------------------------
+
+# Append the 2021 observations to the base, giving NA values for all columns not included in both
+
+df<-bind_rows(df,df_2021)
 
 # ================================================ 2014 and 2016 base ========================================================
 
@@ -881,12 +915,18 @@ df$pint_dic<-ifelse(df$pol_int == 'A lot' | df$pol_int == 'Some', 1, 0)
 
 # Relabel the variable
 
-df$prot3<- ifelse(df$prot3 == 1, 'Yes','No') %>% as.factor()
+df$prot3<- ifelse(df$prot3 == 1, 1, 0)
 
 # Logical
 
-df$prot_log<-df$prot3 == 'YeS'
+df$prot_log<-df$prot3 == 'Yes'
 
+# Create a new one
+
+df<-
+  df %>% 
+  mutate(protest = prot3)
+  
 # Confidence in President ------------------------------------------------------------------------------------------------
 
 # Rename the variable 
@@ -928,6 +968,8 @@ df_2008<-subset(df, year == 2008)
 df_2006<-subset(df, year == 2006)
 df_2004<-subset(df, year == 2004)
 df46<-subset(df, year == 2014 | year == 2016)
+df_w21<-df
+df<-subset(df, year != 2021)
 
 # Save them as R objects to use them later
 
@@ -941,52 +983,11 @@ save(df_2006,file = 'data/rdata/LAPOP 2006 Manipulated Dataframe.Rdata')
 save(df_2004,file = 'data/rdata/LAPOP 2008 Manipulated Dataframe.Rdata')
 save(df46, file = 'data/rdata/LAPOP 2014-2016 Manipulated Dataframe.Rdata')
 save(df, file = 'data/rdata/LAPOP 2004-2019 Manipulated Dataframe.Rdata')
+save(df_w21, file = 'data/rdata/LAPOP 2004-2021 Manipulated Dataframe.Rdata')
 
 # Delete everything but what is needed ------------------------------------------------------------------------------------------------------
 
 # Here I will remove all the unnecessary objects from my workspace
 
 rm(list = setdiff(ls(), 
-                  c('df', 'df_2014', 'df_2016', 'df46')))
-
-# Survey design objects --------------------------------------------------------------------------------------------------
-
-# Full 2004-2019 design
-
-lapop_des<-svydesign(ids = ~ upm, 
-                     strata = ~ estratopri, 
-                     weights = ~ weight1500, 
-                     nest = TRUE,
-                     na.action = 'na.exclude',
-                     data = df)
-
-# 2014-2016 Survey Design
-
-lapop_des46<-svydesign(ids = ~ upm, 
-                       strata = ~ estratopri, 
-                       weights = ~ weight1500, 
-                       nest = TRUE,
-                       na.action = 'na.exclude',
-                       data = df46)
-
-# 2016 free dataset
-
-lapop_des16<-svydesign(ids = ~ upm, 
-                       strata = ~ estratopri, 
-                       weights = ~ weight1500, 
-                       nest = TRUE,
-                       na.action = 'na.exclude',
-                       data = df_2016)
-
-# 2014 free dataset
-
-lapop_des14<-svydesign(ids = ~ upm, 
-                       strata = ~ estratopri, 
-                       weights = ~ weight1500, 
-                       nest = TRUE,
-                       na.action = 'na.exclude',
-                       data = df_2014)
-
-
-
-
+                  c('df')))
