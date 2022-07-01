@@ -2,11 +2,11 @@
 title: "Una mirada a los datos sobre la protesta social en Ecuador"
 author: "Daniel Sánchez"
 date: "Julio 2022"
-output: html_document
 bibliography: refs-article-protests.bib
+output: html_document
 ---
 
-A mediados de junio 2022, la Confederación de Nacionalidades Indígenas del Ecuador (CONAIE) convocó a una movilización [@Pazmino.2022]
+A mediados de junio 2022, la Confederación de Nacionalidades Indígenas del Ecuador (CONAIE) convocó a una movilización masiva en el país con el fin de que el programa de gobierno de Guillermo Lasso, elegido en abril 2021, incluya diez pedidos de índole económica y social [@Pazmino.2022]. Después de 18 días de manifestaciones, el paro terminó tras un acuerdo entre el gobierno nacional y la CONAIE, mediado por la iglesia católica mediante la Conferencia Episcopal [@GK.2022]. 
 
 ```{r setup, include = FALSE}
 # Opciones de chunks
