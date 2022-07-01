@@ -6,7 +6,13 @@ bibliography: refs-article-protests.bib
 output: html_document
 ---
 
-A mediados de junio 2022, la Confederación de Nacionalidades Indígenas del Ecuador (CONAIE) convocó a una movilización masiva en el país con el fin de que el programa de gobierno de Guillermo Lasso, elegido en abril 2021, incluya diez pedidos de índole económica y social [@Pazmino.2022]. Después de 18 días de manifestaciones, el paro terminó tras un acuerdo entre el gobierno nacional y la CONAIE, mediado por la iglesia católica mediante la Conferencia Episcopal [@GK.2022]. 
+A mediados de junio 2022, la Confederación de Nacionalidades Indígenas del Ecuador (CONAIE) convocó a una movilización masiva en el país con el fin de que el programa de gobierno de Guillermo Lasso, elegido en abril 2021, incluya diez pedidos de índole económica y social [@Pazmino.2022]. Después de 18 días de manifestaciones, el paro terminó tras un acuerdo entre el gobierno nacional y la CONAIE, mediado por la iglesia católica mediante la Conferencia Episcopal [@GK.2022]. Las manifestaciones dejan al Ecuador con nueve muertos, millones de dólares en daños y pérdidas económicas así como varios heridos y aprehendidos por la policía [@Maria.2022;@Montalvo.2022;@Comercio.2022].
+
+Desde 2019, el Ecuador parece haber perdido la relativa estabilidad política que tuvo durante los diez años de gobierno de Rafael Correa, puesto que desde octubre de ese año tomaría lugar una protesta histórica liderada una vez más por la CONAIE contra el gobierno del entonces presidente Lenín Moreno [@LAPOPReport.2022]. Sin embargo, el período de estabilidad ha sido más bien la excepción y no la norma, puesto que históricamente Ecuador ha tenido un golpe de estado cada 6 años, y un 50% de esos golpes de estado fueron exitosos derrocando al gobierno [@Loaiza.2022]. Dada la importancia de movilizaciones en el contexto político, social y económico del Ecuador y la renovada inestabilidad política, es imperante una mirada objetiva a las protestas y el contexto que las rodean desde un punto de vista cuantitativo, un punto de vista que logre aportar a la discusión política que se avecina post-paro. 
+
+Para entender mejor la protesta de junio 2022 lo natural sería mirar hacia la protesta del 2019, la segunda más reciente y la que en muchos aspectos es similar a la de 2022 debido a los actores políticos involucrados: CONAIE, oposición correísta y gobierno central anticorreísta. Lastimosamente, esta protesta se sitúa en punto desafortunado del tiempo: debido a su proximidad con el comienzo de la pandemia del COVID-19 cualquier encuesta de opinión pública (o al menos las que abren sus datos al público) se realizó varios meses después de que las movilizaciones tomaron lugar. 
+
+La encuesta del Barómetro de las Américas (AB) del Latin American Public Opinion Project (LAPOP), por ejemplo, tuvo una ronda a comienzos del 2019 y solamente pudo retornar en 2021, sin la posibilidad de hacer preguntas sobre las protestas de 2019 debido a los efectos de la pandemia.
 
 ```{r setup, include = FALSE}
 # Opciones de chunks
@@ -83,19 +89,19 @@ ggplot(prot_df, aes(x = year, y = protest))+
            color = 'black', 
            width = 0.7)+
   geom_vline(xintercept = 0.5, linetype = 'dotted', color = quant_red, size = 1.25)+
-  geom_vline(xintercept = 7.5, linetype = 'dotted', color = quant_red, size = 1.25)+
-  geom_vline(xintercept = 3.2, linetype = 'dotted', color = quant_red, size = 1.25)+
+  geom_vline(xintercept = 3.5, linetype = 'dotted', color = quant_red, size = 1.25)+
   geom_vline(xintercept = 5.55, linetype = 'dotted', color = quant_red, size = 1.25)+
+  geom_vline(xintercept = 7.5, linetype = 'dotted', color = quant_red, size = 1.25)+
   geom_errorbar(aes(ymin = protest - 1.96*se,
                     ymax = protest + 1.96*se),
                 width = 0.3)+
   geom_text(aes(label = round(protest, 4)*100),
                 size = 3,
                 vjust = 5)+
-  labs(x = 'Ronda de la Encuesta',
+  labs(x = 'Ronda de la Encuesta AB',
        y = 'Porcentaje de población en edad de votar',
        title = 'Participación en una protesta en los últimos 12 meses en Ecuador',
-       subtitle = 'Datos del Barómetro de las Américas (LAPOP). Barras representan intervalos de confianza al 95%. \nLíneas punteadas representan protestas de importancia en el país.')+
+       subtitle = 'Datos del AB (LAPOP). Barras representan intervalos de confianza al 95%. \nLíneas punteadas representan protestas de importancia en el país.')+
   theme_article_ds
 ```
 
