@@ -98,7 +98,7 @@ ggplot(prot_df, aes(x = year, y = protest))+
        y = '% de personas mayores a 16 que han protestado',
        title = 'Participación en protestas del Ecuador 2006-2019',
        subtitle = '¿En los últimos 12 meses ha participado en una manifestación o protesta pública?',
-       caption = 'Nota: Datos del Barómetro de las Américas. Barras representan intervalos de confianza al 95% con errores ajustados por\ndiseño muestral complejo. Líneas punteadas representan protestas de importancia en el país. Encuestas realizadas de \nenero a marzo de cada año salvo ronda 2016, realizada de nov. 2016 a ene. 2017. Las cifras representan el porcentaje de \npersonas que han protestado en los últimos 12 meses sobre el total de personas en edad de votar (mayores a 16) del Ecuador.')+
+       caption = 'Nota: Datos del Barómetro de las Américas. Barras representan intervalos de confianza al 95% con errores ajustados por\ndiseño muestral complejo. Líneas punteadas representan protestas de importancia en el país. Encuestas realizadas de \nenero a marzo de cada año salvo ronda 2016, realizada de nov. 2016 a ene. 2017. Las cifras representan el porcentaje de \npersonas que han protestado en los últimos 12 meses sobre el total de personas en edad de votar (mayores a 16).')+
   theme_article_ds+
   theme(axis.ticks = element_blank())
 ```
@@ -327,7 +327,7 @@ ggplot(desap_time_df, aes(x = year, y = prot_desap, color = legend, group = lege
        title = 'Actitudes hacia protestas del Ecuador 2006-2019',
        subtitle = 'Porcentaje que aprueba el derecho a la protesta pacífica de diferentes grupos políticos',
        color = '',
-       caption = 'Nota: Datos del Barómetro de las Américas. Barras representan intervalos de confianza al 95% con errores ajustados por\ndiseño muestral complejo. Encuestas realizadas de enero a marzo de cada año salvo ronda 2016, realizada de nov. 2016\na ene. 2017. Líneas punteadas en gris representan los límites inferiores y superiores del intervalo de confianza al 95%.\n Las cifras representan el porcentaje sobre el total de personas en edad de votar (mayores a 16) del Ecuador.')+
+       caption = 'Nota: Datos del Barómetro de las Américas. Barras representan intervalos de confianza al 95% con errores ajustados por\ndiseño muestral complejo. Encuestas realizadas de enero a marzo de cada año salvo ronda 2016, realizada de nov. 2016\na ene. 2017. Líneas punteadas en gris representan los límites inferiores y superiores del intervalo de confianza al 95%.\n Las cifras representan el porcentaje de personas que responden números mayores a 4 (del 1 al 10) sobre el total\nde personas en edad de votar (mayores a 16) del Ecuador.')+
   theme_article_ds+
   theme(legend.position = c(0.29,0.2),
         legend.background = element_blank(),
