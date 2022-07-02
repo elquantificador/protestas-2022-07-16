@@ -43,7 +43,6 @@ theme_article_ds<-
   theme_bw() +
   theme(panel.grid = element_blank(),
         axis.text.y = element_blank(),
-        axis.ticks = element_blank(),
         plot.caption = element_text(hjust = 0, face = 'italic')) 
 
 ```
@@ -99,8 +98,9 @@ ggplot(prot_df, aes(x = year, y = protest))+
        y = '% de personas mayores a 16 que han protestado',
        title = 'Participación en protestas del Ecuador 2006-2019',
        subtitle = '¿En los últimos 12 meses ha participado en una manifestación o protesta pública?',
-       caption = 'Nota: Datos del Barómetro de las Américas. Barras representan intervalos de confianza al 95% con errores ajustados por\ndiseño muestral complejo. Líneas punteadas representan protestas de importancia en el país. Encuestas realizadas de \nenero a marzo de cada año salvo ronda 2016, realizada en nov. 2016 - ene. 2017. Las cifras representan el porcentaje de \npersonas que han protestado en los últimos 12 meses sobre el total de personas en edad de votar (mayores a 16) del Ecuador.')+
-  theme_article_ds
+       caption = 'Nota: Datos del Barómetro de las Américas. Barras representan intervalos de confianza al 95% con errores ajustados por\ndiseño muestral complejo. Líneas punteadas representan protestas de importancia en el país. Encuestas realizadas de \nenero a marzo de cada año salvo ronda 2016, realizada de nov. 2016 a ene. 2017. Las cifras representan el porcentaje de \npersonas que han protestado en los últimos 12 meses sobre el total de personas en edad de votar (mayores a 16) del Ecuador.')+
+  theme_article_ds+
+  theme(axis.ticks = element_blank())
 ```
 A mediados de junio 2022, la Confederación de Nacionalidades Indígenas del Ecuador (CONAIE) convocó a una movilización masiva en el país con el fin de que el programa de gobierno de Guillermo Lasso, elegido en abril 2021, incluya diez pedidos de índole económica y social [@Pazmino.2022]. Después de 18 días de manifestaciones, el paro terminó tras un acuerdo entre el gobierno nacional y la CONAIE, mediado por la iglesia católica mediante la Conferencia Episcopal [@GK.2022]. Las manifestaciones dejan al Ecuador con nueve muertos, millones de dólares en daños y pérdidas económicas así como varios heridos y aprehendidos por la policía [@Maria.2022;@Montalvo.2022;@Comercio.2022].
 
@@ -252,8 +252,87 @@ Ahora bien, ¿que caracteriza a los protestantes ecuatorianos? Tanto protestante
 
 Viene al caso ahora considerar una diferencia clave que puede haber sido fácil de confundir en el Ecuador últimamente, especialmente mientras las protestas tomaban lugar: **la participación en protestas no es lo mismo que el apoyo a las mismas**. Salazar [-@Salazar.2022] cuantifica el apoyo a las protestas mediante la encuesta de opinión pública Latinobarómetro, encontrando que un 47% de entrevistados apoya a las protestas en general, y un 61% de quienes se autoidentifican como indígenas las apoyan también. El Barómetro de las Américas de LAPOP nos permite construir una serie de tiempo para monitorear el apoyo histórico a las protestas de los ecuatorianos, como se ve a continuación. 
 
+```{r actitudes-protestas, include = T, fig.align = 'center'}
+# Tabulamos la variable de apoyo a las protestas en general
 
+# La variable toma valores de 1 al 10, siendo 10 que más apoyan las protestas en general. Escogemos a quienes responden 1-5
+# como la gente que desaprueba el derecho a la protesta.
 
+df$prot_desap<-ifelse(df$e5 > 5, 1, 0)
 
+# Lo mismo con la variable de apoyo a las protestas de quienes hablan en contra del gobierno
 
+df$prot_desap_op<-ifelse(df$d2 > 5, 1, 0)
+
+# Actualizamos base de datos de protestantes y diseños muestrales
+
+lapop_des<-
+  svydesign(ids = ~ upm, 
+            strata = ~ estratopri, 
+            weights = ~ weight1500, 
+            nest = TRUE,
+            na.action = 'na.exclude',
+            data = df)
+
+df_prot<-
+  df %>% 
+  filter(protest == 1)
+
+lapop_prot_des<-
+  svydesign(ids = ~ upm, 
+            strata = ~ estratopri, 
+            weights = ~ weight1500, 
+            nest = TRUE,
+            na.action = 'na.exclude',
+            data = df_prot)
+
+# Hacemos la tabulación a nivel de año
+
+desap_time<-
+    svyby(~ prot_desap,
+          ~ year,
+          design = lapop_des,
+          svymean,
+          na.rm = T)
+
+desap_op_time<-
+    svyby(~ prot_desap_op,
+          ~ year,
+          design = lapop_des,
+          svymean,
+          na.rm = T)
+
+# Juntar todo
+
+desap_time_df<-
+  desap_time %>%
+  mutate(legend = 'Aprueba las protestas en general') %>% 
+  bind_rows(desap_op_time %>% 
+            rename(prot_desap = prot_desap_op) %>% 
+            mutate(legend = 'Aprueba las protestas de grupos de oposición al gobierno' ))
+
+rownames(desap_time_df)<-NULL
+
+# Ahora si el gráfico
+
+ggplot(desap_time_df, aes(x = year, y = prot_desap, color = legend, group = legend))+
+  geom_line()+
+  geom_line(aes(x = year, y = prot_desap - 1.96*se), color = quant_grey, linetype = 'dotted')+
+  geom_line(aes(x = year, y = prot_desap + 1.96*se), color = quant_grey, linetype = 'dotted')+
+  geom_point()+
+  scale_color_manual(values = c('#964B00', quant_red),
+                     breaks = c('Aprueba las protestas en general', 'Aprueba las protestas de grupos de oposición al gobierno'))+
+  labs(x = '',
+       y = '% de personas que aprueban protestas',
+       title = 'Actitudes hacia protestas del Ecuador 2006-2019',
+       subtitle = 'Porcentaje que aprueba el derecho a la protesta pacífica de diferentes grupos políticos',
+       color = '',
+       caption = 'Nota: Datos del Barómetro de las Américas. Barras representan intervalos de confianza al 95% con errores ajustados por\ndiseño muestral complejo. Encuestas realizadas de enero a marzo de cada año salvo ronda 2016, realizada de nov. 2016\na ene. 2017. Líneas punteadas en gris representan los límites inferiores y superiores del intervalo de confianza al 95%.\n Las cifras representan el porcentaje sobre el total de personas en edad de votar (mayores a 16) del Ecuador.')+
+  theme_article_ds+
+  theme(legend.position = c(0.29,0.2),
+        legend.background = element_blank(),
+        axis.ticks.x = element_blank(),
+        axis.text.y = element_text(size = 10))+
+  scale_y_continuous(breaks = c(0.4,0.5,0.6,0.7), labels = c(40,50,60,70))
+```
 
