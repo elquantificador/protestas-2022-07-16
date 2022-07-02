@@ -3,6 +3,7 @@ title: "Una mirada a los datos sobre la protesta social en Ecuador"
 author: "Daniel Sánchez"
 date: "Julio 2022"
 bibliography: refs-article-protests.bib
+csl: apa.csl
 output: html_document
 ---
 
@@ -109,4 +110,148 @@ A mediados de junio 2022, la Confederación de Nacionalidades Indígenas del Ecu
 Desde 2019, el Ecuador parece haber perdido la relativa estabilidad política que tuvo durante los diez años de gobierno de Rafael Correa, puesto que desde octubre de ese año tomaría lugar una protesta histórica liderada una vez más por la CONAIE contra el gobierno del entonces presidente Lenín Moreno [@LAPOPReport.2022]. Sin embargo, el período de estabilidad ha sido más bien la excepción y no la norma, puesto que históricamente Ecuador ha tenido un golpe de estado cada 6 años, y un 50% de esos golpes de estado fueron exitosos derrocando al gobierno [@Loaiza.2022]. Dada la importancia de movilizaciones en el contexto político, social y económico del Ecuador y la renovada inestabilidad política, es imperante una mirada objetiva a las protestas y el contexto que las rodean desde un punto de vista cuantitativo, un punto de vista que logre informar a la discusión política post-paro. 
 
 La encuesta del Barómetro de las Américas (AB) del Latin American Public Opinion Project (LAPOP) ha corrido rondas de encuestas de opinión publica en Ecuador desde el 2006, incluyendo algunas preguntas sobre protestas. La última vez que se realizaron preguntas sobre protestas fue a comienzos del 2019, lo que nos permite observar la opinión pública poco antes de la protesta de octubre 2019.
+
+La participación en protestas decrece gradualmente en el país desde 2006 hasta principios del 2019. Comenzando con un significativo `r prot_df %>% filter(year == 2006) %>% select(protest) %>% round(4)*100`% de participación en protestas, probablemente por la participación en la "Rebelión de los Forajidos" que derrocó al Presidente Lucio Gutiérrez, el Ecuador comenzó el 2019 con un `r prot_df %>% filter(year == 2019) %>% select(protest) %>% round(4)*100`% de participación en protestas. En verano de 2015 se tuvo también movilizaciones de importancia convocadas por la CONAIE y políticos de la oposición contra el gobierno de Rafael Correa [@Conaie.2015; @BBC.2015], sin embargo, las manifestaciones parecen no haber convocado tantas personas, aun cuando éstas coincidieron con la más baja popularidad del régimen del entonces presidente [@Melendez.2017]. Por otro lado, para 2019 se tiene un ligero pero estadísticamente significativo aumento en participación en protestas, aun cuando entre los períodos de encuesta no se registraron protestas a gran escala en el país. Considerando estos hechos y que en general en Ecuador quienes participan en protestas suelen ser una notable minoría (como es de esperarse, al ser un mecanismo que favorece a minorías que generalmente no cuentan con representación democrática suficiente), aparece la posibilidad de que el hecho de que exista una protesta a gran escala no necesariamente implica un aumento en la participación total en protestas. Es posible que se trate de la cantidad más que de la intensidad de protestas, ya que protestantes pueden no concentrarse en grandes manifestaciones sino en unas más pequeñas que reciben poca o ninguna atención de los medios.
+
+```{r protestantes-carac}
+# Realizamos tabulaciones cruzadas para observar características de los protestantes
+
+# Base de solo protestantes
+
+df_prot<-
+  df %>% 
+  filter(protest == 1)
+
+# Diseño de encuesta
+
+lapop_prot_des<-
+  svydesign(ids = ~ upm, 
+            strata = ~ estratopri, 
+            weights = ~ weight1500, 
+            nest = TRUE,
+            na.action = 'na.exclude',
+            data = df_prot)
+
+# Edad promedio de protestante y no protestante
+
+edad_protestante_promedio<-
+  svyby(~ age,
+        ~ protest,
+        design = lapop_des,
+        svymean,
+        na.rm = T)
+
+# Edad promedio de protestantes a lo largo del tiempo
+
+edad_protestante_promedio_time<-
+  svyby(~ age,
+        ~ year,
+        design = lapop_prot_des,
+        svymean,
+        na.rm = T)
+
+# Distribución de género
+
+genero_prot<-
+    svyby(~ gndr,
+          ~ protest,
+          design = lapop_des,
+          svymean,
+          na.rm = T)
+
+# Distribución de género a lo largo del tiempo
+
+genero_prot_time<-
+    svyby(~ gndr,
+          ~ year,
+          design = lapop_prot_des,
+          svymean,
+          na.rm = T)
+
+# Años de educación promedio 
+
+educacion_prot<-
+    svyby(~ ed,
+          ~ protest,
+          design = lapop_des,
+          svymean,
+          na.rm = T)
+
+# Años de educación promedio a lo largo del tiempo
+
+educacion_prot_time<-
+    svyby(~ ed,
+          ~ year,
+          design = lapop_prot_des,
+          svymean,
+          na.rm = T)
+
+# Urbano-Rural
+
+educacion_prot<-
+    svyby(~ ed,
+          ~ protest,
+          design = lapop_des,
+          svymean,
+          na.rm = T)
+
+# Para trabajar con identificación racial, creamos dos indicadores: indígenas y non-white/non-mestizo
+
+# Indígenas
+
+df$indg<-ifelse(df$etid == 3,1,0)
+
+# Actualizamos el diseño muestral y la base de datos de protestantes
+
+lapop_des<-svydesign(ids = ~ upm, 
+                     strata = ~ estratopri, 
+                     weights = ~ weight1500, 
+                     nest = TRUE,
+                     na.action = 'na.exclude',
+                     data = df)
+df_prot<-
+  df %>% 
+  filter(protest == 1)
+
+
+lapop_prot_des<-
+  svydesign(ids = ~ upm, 
+            strata = ~ estratopri, 
+            weights = ~ weight1500, 
+            nest = TRUE,
+            na.action = 'na.exclude',
+            data = df_prot)
+
+# Indígenas por protest
+
+indg_prot<-
+    svyby(~ indg,
+          ~ protest,
+          design = lapop_des,
+          svymean,
+          na.rm = T)
+
+# Indígenas a lo largo del tiempo
+
+indg_prot_time<-
+    svyby(~ indg,
+          ~ year,
+          design = lapop_prot_des,
+          svymean,
+          na.rm = T)
+
+# Distribución racial de la muestra
+
+race_time<-
+  svyby(~ as.factor(etid),
+        ~ year,
+        design = lapop_des,
+        svymean,
+        na.rm = T)
+
+```
+
+Ahora bien, ¿que caracteriza a los protestantes ecuatorianos? Tanto protestantes como no protestantes en promedio cercan los `r edad_protestante_promedio %>% filter(protest == 1) %>% select(age) %>% round(0)` años, siendo los protestantes marginalmente más jóvenes. Adicionalmente, a lo largo del tiempo los protestantes han sido mayoritariamente hombres, salvo en 2014 y 2019, en donde no existieron diferencias estadísticamente significativas entre ambos grupos. Quienes protestan tiene marginalmente más años de educación que aquellos que no, y dominan los protestantes de áreas urbanas, aunque esto puede deberse a que el muestreo de la encuesta se concentra mayormente en áreas urbanas.  
+
+
 
