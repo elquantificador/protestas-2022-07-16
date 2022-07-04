@@ -3,6 +3,7 @@ title: "Una perspectiva cuantitativa sobre las protestas en Ecuador"
 author: "Daniel Sánchez"
 date: "Julio 2022"
 output:
+  pdf_document: default
   html_document: default
 csl: apa.csl
 bibliography: refs-article-protests.bib
