@@ -786,21 +786,17 @@ df$corprob<-ifelse(df$a4 == 13, 1, 0) # Extract a dummy equaling 1 if the respon
 
 # Labor Market Status OCUP4A  --------------------------------------------------------------------------------------------
 
-# For the ocup4a question, available 2008 through 2019, convert the numbers to factors for regression analysis
-
-df$ocup4a <- as.factor(df$ocup4a)
-
 # Create a variable that signals employment, 1 if employed 
 
-df$em_4a<-ifelse(df$ocup4a == 1 | df$ocup4a == 2 ,1,0)
+df$em_4a<-ifelse(df$ocup4a == 1 |df$ocup4a == 2,1,0)
 
 # Create a variable that signals open unemployment (only those that are looking for job)
 
-df$unem_4a<-ifelse(df$ocup4a == 3,1,0 ) %>% as.factor()
+df$unem_open<-ifelse(df$ocup4a == 3,1,0 )
 
 # Create a variable that signals both kinds of unemployed, looking and not looking
 
-df$unem2_4a<-ifelse(df$ocup4a == 3 | df$ocup4a == 7, 1, 0)
+df$unem_total<-ifelse(df$ocup4a == 3 | df$ocup4a == 7, 1, 0)
 
 # Create a new labor market variable, with the following categories
 

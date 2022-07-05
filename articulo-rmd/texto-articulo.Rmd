@@ -5,7 +5,7 @@ date: "Julio 2022"
 output:
   pdf_document: default
   html_document: default
-csl: apa.csl
+csl: ieee.csl
 bibliography: refs-article-protests.bib
 ---
 
@@ -51,9 +51,9 @@ theme_article_ds<-
 
 ```
 
-*El Ecuador se despide de la primera mitad del 2022 con 18 días de movilizaciones, constituyendo así el Paro Nacional más extenso de las últimas décadas. Dada la creciente crisis política, social y económica, así como la falta de garantías para una resolución pacífica entre las partes involucradas en el paro, es importante comprender la manera en la que los ecuatorianos se comportan frente a las protestas. Un análisis de la encuesta de opinión pública del Barómetro de las Américas descubre que quienes participan en protestas son más propensos a ser hombres y a respetar el derecho a la protesta en general, pero en otras características son similares a quienes no participan en ellas. Notablemente, los resultados de la encuesta sugieren que quienes se autoidentifican como indígenas no son más propensos a participar en protestas. También se descubre que el respecto al derecho a protestar se mueve en dirección opuesta al apoyo al Presidente de turno, lo que revela una preocupante situación: el ecuatoriano podría solo respetar este derecho cuando las movilizaciones se alinean a sus intereses políticos.*
+*El Ecuador finaliza la primera mitad del 2022 con 18 días de movilizaciones, constituyendo así el Paro Nacional más extenso de las últimas décadas. Dada la creciente crisis política, social y económica, así como la falta de garantías para una resolución pacífica es importante comprender la manera en la que los ecuatorianos se comportan frente a las protestas. Un análisis de la encuesta de opinión pública del Barómetro de las Américas descubre que quienes participan en protestas son más propensos a ser hombres, a respetar el derecho a la protesta en general, a desaprobar al Presidente y a identificarse con algún grupo político. Notablemente, los resultados de la encuesta sugieren que quienes se autoidentifican como indígenas, quienes cuya situación económica ha empeorado y quienes están desempleados no son más propensos a participar en protestas. También se descubre que el respecto al derecho a protestar se mueve en contra al apoyo al Presidente de turno, lo que revela una preocupante situación: el ecuatoriano podría solo respetar este derecho cuando las movilizaciones se alinean a sus intereses políticos.*
 
-```{r grafico-participacion-protesta, include = T, echo = F, fig.align = 'center'}
+```{r grafico-participacion-protesta, include = T, echo = F, fig.align = 'center',fig.width = 12.5, fig.height = 7}
 ## 1. Participación en protestas
 
 # Debemos construir una sola variable en la base de datos que denote 1 si es que se participó en protest, 0 de otra forma
@@ -107,21 +107,20 @@ ggplot(prot_df, aes(x = year, y = protest))+
        y = '% de personas mayores a 16 que han protestado',
        title = 'Participación en protestas del Ecuador 2006-2019',
        subtitle = '¿En los últimos 12 meses ha participado en una manifestación o protesta pública?',
-       caption = str_wrap(caption_grafo1, 118))+
+       caption = str_wrap(caption_grafo1, 205))+
   theme_article_ds+
   theme(axis.ticks = element_blank())
 
 ```
+# La participación en protestas
 
-A mediados de junio 2022, la Confederación de Nacionalidades Indígenas del Ecuador (CONAIE) convocó a una movilización masiva en el país con el fin de que Guillermo Lasso, presidente elegido en abril 2021, incluya dentro de su plan de gobierno diez pedidos de índole económica y social [@Pazmino.2022]. Después de 18 días de manifestaciones, el paro terminó tras un acuerdo entre el gobierno nacional y la CONAIE [@GK.2022]. Las manifestaciones dejan al Ecuador con nueve muertos, millones de dólares en daños y pérdidas económicas así como varios heridos y aprehendidos por la policía [@Maria.2022; @Montalvo.2022; @Comercio.2022].
+A mediados de junio 2022, la Confederación de Nacionalidades Indígenas del Ecuador (CONAIE) convocó a una movilización masiva en el país con el fin de que Guillermo Lasso, incluya dentro de su plan de gobierno diez pedidos de índole económica y social [@Pazmino.2022]. Después de 18 días de manifestaciones, el paro terminó tras un acuerdo entre el gobierno nacional y la CONAIE [@GK.2022]. Las manifestaciones dejan al Ecuador con nueve muertos, millones de dólares en daños y pérdidas económicas así como varios heridos y aprehendidos por la policía [@Maria.2022; @Montalvo.2022; @Comercio.2022].
 
-Desde 2019, el Ecuador parece haber perdido la relativa estabilidad política que tuvo durante los diez años de gobierno de Rafael Correa, dado que desde octubre de ese año tomaría lugar una protesta histórica también liderada por la CONAIE contra el gobierno del entonces presidente Lenín Moreno [@LAPOPReport.2022]. Sin embargo, en nuestro país los períodos de estabilidad han sido la excepción y no la norma, puesto que históricamente Ecuador ha tenido un golpe de estado cada 6 años y un 50% de éstos fueron exitosos derrocando al gobierno de turno [@Loaiza.2022]. Dada la importancia de las movilizaciones en el contexto político, social y económico del Ecuador y la renovada inestabilidad política, es imperante una reflexión objetiva sobre las protestas y el contexto que las rodea desde un punto de vista cuantitativo, el cual pueda aportar a la discusión post-paro.
+El Ecuador parece haber perdido la relativa estabilidad política que tuvo durante los diez años de gobierno de Rafael Correa, especialmente considerando la protesta histórica de octubre 2019, también liderada por la CONAIE contra el gobierno del entonces presidente Lenín Moreno [@LAPOPReport.2022]. Sin embargo, en nuestro país los períodos de estabilidad han sido la excepción y no la norma. Históricamente Ecuador ha tenido un golpe de estado cada 6 años y un 50% de éstos fueron exitosos derrocando al gobierno de turno [@Loaiza.2022]. Dada la importancia de las movilizaciones en el contexto político, social y económico del Ecuador y la renovada inestabilidad política, es imperante una reflexión objetiva sobre las protestas y el contexto que las rodea desde un punto de vista cuantitativo, el cual pueda aportar a la discusión post-paro.
 
 La encuesta del Barómetro de las Américas (AB) del Latin American Public Opinion Project (LAPOP) ha corrido varias rondas de encuestas de opinión publica en Ecuador desde el 2006, incluyendo una batería de preguntas sobre protestas. La última vez que se realizaron estas preguntas fue a inicios del 2019, lo que nos permite observar la opinión pública poco antes de la protesta de octubre 2019.
 
-El gráfico de arriba nos muestra que la participación en protestas decrece gradualmente en el país desde 2006 hasta principios del 2019. Se comienza la serie con un importante `r prot_df %>% filter(year == 2006) %>% select(protest) %>% round(4)*100`% de participación en protestas, probablemente por la "Rebelión de los Forajidos" que derrocó al Presidente Lucio Gutiérrez; la serie finaliza a comienzos del 2019 con un `r prot_df %>% filter(year == 2019) %>% select(protest) %>% round(4)*100`% de participación en protestas. En verano de 2015 hubo importantes movilizaciones convocadas por la CONAIE y políticos de la oposición contra el gobierno de Rafael Correa [@CONAIE.2015; @BBC.2015], sin embargo, las manifestaciones parecen no haber convocado a tantas personas, aún cuando éstas coincidieron con la más baja popularidad del régimen del entonces presidente [@Melendez.2017].
-
-Para 2019 hubo un aumento ligero pero estadísticamente significativo en el porcentaje de participación, aún cuando entre estos períodos no se registraron protestas de gran escala. Considerando estos hechos y que en general en Ecuador quienes participan en protestas suelen ser una notable minoría (como se esperaría, al ser las protestas un mecanismo que favorece a minorías que generalmente no cuentan con suficiente representación democrática), aparece la posibilidad de que una protesta a gran escala no necesariamente implica un aumento en la participación total en protestas. Con esto en mente, es posible que lo importante sea la cantidad más no la intensidad de protestas, ya que sus participantes pueden no concentrarse en grandes manifestaciones sino en unas más pequeñas que reciben poca o ninguna atención de los medios.
+El gráfico de arriba nos muestra que la participación en protestas decrece gradualmente en el país desde 2006 hasta principios del 2019. La serie comienza con un importante `r prot_df %>% filter(year == 2006) %>% select(protest) %>% round(4)*100`% de participación en protestas, probablemente por la "Rebelión de los Forajidos" que derrocó al Presidente Lucio Gutiérrez; la serie finaliza a comienzos del 2019 con un `r prot_df %>% filter(year == 2019) %>% select(protest) %>% round(4)*100`% de participación en protestas. En verano de 2015 hubo importantes movilizaciones convocadas por la CONAIE y políticos de la oposición contra el gobierno de Rafael Correa [@CONAIE.2015; @BBC.2015]. sin embargo, las manifestaciones parecen no haber convocado a tantas personas, aún cuando éstas coincidieron con la más baja popularidad del régimen del entonces presidente [@Melendez.2017].
 
 ```{r protestantes-carac}
 # Realizamos tabulaciones cruzadas para observar características de los protestantes
@@ -196,16 +195,61 @@ educacion_prot_time<-
           svymean,
           na.rm = T)
 
-# Urbano-Rural
+# Situacion económica prot y no prot
 
-educacion_prot<-
-    svyby(~ ed,
+econ_sit_prot<-
+    svyby(~ econ_sit,
           ~ protest,
           design = lapop_des,
           svymean,
           na.rm = T)
 
-# Para trabajar con identificación racial, creamos dos indicadores: indígenas y non-white/non-mestizo
+# Situación económica de los protestantes
+
+econ_sit_prot_time<-
+      svyby(~ econ_sit,
+            ~ year,
+            design = lapop_prot_des,
+            svymean,
+            na.rm = T)
+
+# Situación económica total
+
+econ_sit_time<-
+      svyby(~ econ_sit,
+            ~ year,
+            design = lapop_des,
+            svymean,
+            na.rm = T)
+
+# Por tasa de desempleo
+
+ocup_prot<-
+      svyby(~ unem_total,
+            ~ protest,
+            design = lapop_des,
+            svymean,
+            na.rm = T)
+
+# Por tasa de desempleo para protestantes a lo largo del tiempo
+
+unem_time_prot<-
+      svyby(~ unem_total,
+            ~ year,
+            design = lapop_prot_des,
+            svymean,
+            na.rm = T)
+
+# Desempleo en general
+
+unem_time<-
+      svyby(~ unem_total,
+            ~ year,
+            design = lapop_des,
+            svymean,
+            na.rm = T)
+
+# Para trabajar con identificación racial, creamos indicador de  indígenas
 
 # Indígenas
 
@@ -223,7 +267,6 @@ df_prot<-
   df %>% 
   filter(protest == 1)
 
-
 lapop_prot_des<-
   svydesign(ids = ~ upm, 
             strata = ~ estratopri, 
@@ -236,6 +279,15 @@ lapop_prot_des<-
 
 indg_prot<-
     svyby(~ indg,
+          ~ protest,
+          design = lapop_des,
+          svymean,
+          na.rm = T)
+
+# Blancos por protest
+
+indg_prot<-
+    svyby(~ white,
           ~ protest,
           design = lapop_des,
           svymean,
@@ -259,11 +311,35 @@ race_time<-
         svymean,
         na.rm = T)
 
+# Por approval rating
+
+pres_aprov_prot<-
+    svyby(~ pres_aprov_dic,
+          ~ protest,
+          design = lapop_des,
+          svymean,
+          na.rm = T)
+
+# Por ideología política (derecha-izquierda)
+
+pol_prot<-
+  svyby(~ plscr_na,
+        ~ protest,
+        design = lapop_des,
+        svymean,
+        na.rm = T)
+
 ```
 
-Ahora bien, ¿qué caracteriza a los protestantes ecuatorianos? Tanto protestantes como no protestantes en promedio están cerca de los `r edad_protestante_promedio %>% filter(protest == 1) %>% select(age) %>% round(0)` años; quienes participan en protestan son marginalmente más jóvenes. Adicionalmente, a lo largo del tiempo los protestantes han sido mayoritariamente hombres excepto en 2014 y 2019, en donde no existieron diferencias estadísticamente significativas entre ambos grupos. Además, quienes protestan tienen marginalmente más años de educación que aquellos que no. Un detalle clave sobre los protestantes es su composición racial y los datos de la encuesta permiten saber que *no* existen diferencias estadísticamente significativas entre los porcentajes históricos de protestantes y no protestantes indígenas. De hecho, el porcentaje que representan los indígenas sobre el total protestantes es cercano a solamente el 5%. Esta cifra baja puede estar subestimada dado que no se realizan demasiadas encuestas en cantones rurales, donde la población indígena se concentra. Sin embargo, tiene sentido pensar que los manifestantes indígenas son una minoría sobre el total de todos los protestantes, ya que actualmente la participación en protestas es algo poco menor al 8% y la población indígena llegaba a alrededor del `r round((1.1/17.3)*100,2)`% de la población total del Ecuador en 2020 [@Ortiz.2020].
+# Características de los protestantes
+
+Ahora bien, ¿qué caracteriza a los protestantes ecuatorianos? A lo largo del tiempo los protestantes han sido mayoritariamente hombres, excepto en 2014 y 2019, en donde no existieron diferencias estadísticamente significativas entre ambos grupos. Quienes protestan mayor probabilidad a estar identificados con algún grupo político [^2] y mayor probabilidad de no aprobar el trabajo del Presidente de la República. Aunque los protestantes son más jóvenes y más educados que quienes no protestan, la diferencia es casi negligible, contrario a lo que se pensaría. Adicionalmente, solamente el `r econ_sit_prot %>% filter(protest == 1) %>% select(econ_sitWorse)`% considera que su situación económica es peor que la de hace 12 meses. Este porcentaje es solo minúsculamente mayor al porcentaje de no protestantes que consideran que su situación ha empeorado. De igual manera, la tasa histórica de desempleo [^3] de los protestantes no presenta una diferencia estadísticamente significativa con la tasa de desempleo global de la muestra, salvo en 2014, donde si exíste una diferencia de diez puntos porcentuales. 
+
+Un detalle clave sobre los protestantes es su composición racial y los datos de la encuesta permiten saber que *no* existen diferencias estadísticamente significativas entre los porcentajes históricos de protestantes y no protestantes indígenas. De hecho, el porcentaje que representan los indígenas sobre el total protestantes es cercano a solamente el 5%. Esta cifra baja puede estar subestimada dado que no se realizan demasiadas encuestas en cantones rurales, donde la población indígena se concentra. Sin embargo, tiene sentido pensar que la cifra real no debería desviarse de la que se presenta aquí, ya que actualmente la participación en protestas es algo menor al 8% y la población indígena llegaba a alrededor del `r round((1.1/17.3)*100,2)`% de la población total del Ecuador en 2020 [@Ortiz.2020]. Por otro lado, si existe una diferencia considerable en el porcentaje de gente que se autoidentifica como blanca, en donde existe una diferencia significativa: es menos probable que un blanco proteste. 
 
 Viene al caso considerar una diferencia clave que pudo haber sido fácil de confundir últimamente, especialmente mientras las protestas tomaban lugar: **la participación en protestas no es lo mismo que el apoyo a las mismas**. Salazar [-@Salazar.2022] cuantifica el apoyo a las protestas mediante la encuesta de opinión pública Latinobarómetro, encontrando que un 47% de entrevistados apoya a las protestas en general y un 61% de quienes se autoidentifican como indígenas las apoyan también. El Barómetro de las Américas de LAPOP nos permite construir una serie de tiempo para monitorear el apoyo histórico a las protestas de los ecuatorianos, como se ve a continuación.
+
+# Participación en protestas vs. apoyo al derecho de protesta
 
 ```{r actitudes-protestas, include = T, fig.align = 'center', fig.width = 12.5, fig.height = 7}
 # Tabulamos la variable de apoyo a las protestas en general
@@ -449,7 +525,7 @@ protestas_graph + pol_graph +
                 plot.title = element_text(hjust = 0.5)))
 ```
 
-Los datos nos muestran que, previo a la protesta de 2019, el derecho a protestar tanto en general como de grupos de oposición ha sido mayormente apoyado por la población, sin nunca caer por debajo del 40%. En un principio, más ecuatorianos apoyan las protestas en general que las protestas de los grupos que *hablan mal de la forma de gobierno actual* [@Donoso.2018]. Sin embargo, la relación se invierte para 2016, cerca del fin del gobierno de Correa. A partir de este año era más probable que una persona apruebe las protestas contra el actual gobierno que las protestas en general. Es un hecho confuso que quizás sugiere un grado de aprobación de autoritarismos por parte del electorado, pero requiere una investigación más profunda.
+Los datos nos muestran que, previo a la protesta de 2019, el derecho a protestar tanto en general como de grupos de oposición ha sido mayormente apoyado por la población, sin nunca caer por debajo del 40%. En un principio, más ecuatorianos apoyan las protestas en general que las protestas de los grupos que *hablan mal de la forma de gobierno actual*[@Donoso.2018]. Sin embargo, la relación se invierte para 2016, cerca del fin del gobierno de Correa, en donde era más probable que una persona apruebe las protestas contra el actual gobierno que las protestas en general. Es un hecho confuso que quizás sugiere un grado de aprobación de autoritarismos por parte del electorado, pero requiere una investigación más profunda.
 
 ```{r otros-calculos}
 # Hacemos algunas tabulaciones cruzadas
@@ -491,13 +567,29 @@ prot_desap_prot_time1<-
           na.rm = T)
 ```
 
-Un preocupante hecho que salta a la vista es que el período de menor tolerancia a la protesta se dio durante el pico de popularidad del gobierno de Rafael Correa, como puede observarse en el gráfico de la derecha. En períodos en donde el Presidente era popular, se rechazaba más a la protesta y viceversa. Desde que Lenín Moreno se distanció del antiguo régimen, se vuelve a tener una mayor tolerancia a la protesta, y también se da la extraña inversión de aprobaciones a la protesta. No debemos inferir causalidad de correlación solamente, sin embargo, ¿podría ser posible una explicación de protesta a conveniencia? Es decir, las protestas son válidas y legítimas cuando se alinean  a mis intereses y tendencias políticas, pero si es que no... ¿no son válidas? Otra incoherencia surge de una tabulación cruzada entre apoyo y participación en protestas. Como se esperaría, un protestante es más propenso a aprobar el derecho de protestar que alguien que no ha protestado. Sin embargo, se esperaría que quienes aprueban el derecho a protestar sean la mayoría aplastante dentro de los participantes, pero existe un `r round((100-(prot_desap_prot %>% filter(protest == 1) %>% select(prot_desap)*100)),2)`% de ellos que no lo han aprobado históricamente. De hecho, para el 2014, solo un `r round(prot_desap_prot_time %>% filter(year == 2014) %>% select(prot_desap)*100, 2)`% aprueba este derecho. Respecto al apoyo a las protestas de los grupos de oposición al gobierno, los porcentajes son peores: históricamente un `r round((100-(prot_desap_prot1 %>% filter(protest == 1) %>% select(prot_desap_op)*100)), 2)`% de protestantes no aprueba ese derecho. Este es un fenómeno extraño y preocupante que merece ser observado más a fondo en el futuro, con datos actualizados.
+Un preocupante hecho que salta a la vista es que el período de menor tolerancia a la protesta se dio durante el pico de popularidad del gobierno de Rafael Correa, como puede observarse en el gráfico de la derecha. En períodos en donde el Presidente era popular, se rechazaba más a la protesta y viceversa. Desde que Lenín Moreno se distanció del antiguo régimen, se vuelve a tener una mayor tolerancia a la protesta, y también se da la extraña inversión de aprobaciones a la protesta. No debemos inferir causalidad de correlación solamente, sin embargo, ¿podría ser posible una explicación de protesta a conveniencia? Es decir, las protestas son válidas y legítimas cuando se alinean  a mis intereses y tendencias políticas, pero si es que no... ¿no son válidas? Ok, protesta, ¿pero no contra los políticos que yo apoyo? 
 
-En fin, existe mucho que explorar en los datos sobre la protesta social en nuestro país, así como varias fuentes de éstos para analizar y comparar. En esta radiografía de diagnóstico realizada con los datos de la encuesta del Barómetro de las Américas de LAPOP, nos hemos llevado algunos puntos para pensar. En primer lugar, muchas características entre protestantes y no protestantes son similares: edades, años de escolaridad, y la probabilidad de ser indígenas. Por otro lado, se ha visto que es más probable que un protestante sea hombre y, obviamente, que apruebe el derecho a la protesta por todos los actores de la sociedad, aunque no tanto como se pensaría. Encontramos también una clara divergencia entre la participación en protestas y la aprobación hacia las mismas, descubriendo el perturbador hecho que el apoyo a las protestas se mueve en dirección contraria al apoyo al gobierno de turno. A medida que el tiempo pasa y más datos se vuelven accesibles, habrá lugar para monitorear y confirmar las relaciones que el presente análisis descubre, así como investigar otras nuevas, con un enfoque hacia la transparencia y la búsqueda de efectos causales.
+Otra incoherencia surge de una tabulación cruzada entre apoyo y participación en protestas. Como se esperaría, un protestante es más propenso a aprobar el derecho de protestar que alguien que no ha protestado. Sin embargo, se esperaría que quienes aprueban el derecho a protestar sean la mayoría aplastante dentro de los participantes, pero existe un `r round((100-(prot_desap_prot %>% filter(protest == 1) %>% select(prot_desap)*100)))`% de ellos que no lo han aprobado históricamente. Respecto al apoyo a las protestas de los grupos de oposición al gobierno, los porcentajes son peores: históricamente un `r round((100-(prot_desap_prot1 %>% filter(protest == 1) %>% select(prot_desap_op)*100)))`% de protestantes no aprueba ese derecho. Este es un fenómeno extraño y preocupante que merece ser observado más a fondo en el futuro, con datos actualizados.
 
-Es de innegable importancia el entendimiento de lo que implican las protestas, tanto para quienes las lideran y las enfrentan como para los ciudadanos comunes y corrientes. En mi opinión, es incluso más importante que el ecuatoriano promedio las comprenda, puesto que aquellos políticos, dirigentes y autoridades que las protagonizan rara vez los vemos en primera línea. Informar nuestra discusión sobre la coyuntura del país con hechos, relativamente libres de ideología y subjetividad, es extremadamente imperante para la formación de una mejor nación y la protección del derecho a la protesta pacífica, algo clave para el buen funcionamiento de una democracia [@Donoso.2018]. Las protestas de junio 2022 finalizan con concesiones de ambas partes, pero que tristemente giran alrededor del precio de la gasolina, pateando hacia el mediano plazo la resolución de los otros problemas. No está claro cómo se resuelve el problema de la salud y educación aumentando el gasto público en subsidio a la gasolina a un valor que supera el presupuesto de salud y se aproxima peligrosamente al de educación [@Tapia.2022]. Tampoco está claro cómo se puede llegar al acuerdo nacional sin la presencia del Presidente de la República en la firma de la paz, ni cómo se puede llegar a los merecidos precios justos para los productores indígenas exigiendo controles de precio en otros bienes. La historia amenaza con repetirse en esta mesa de diálogo, recordando que en 2019 las protestas también finalizaron, después de varios días de violencia y destrucción, por promesas que giraban en torno a la gasolina, pero cuya mesa de diálogo no tuvo éxito tras el distanciamiento de la CONAIE durante las charlas [@LAPOPReport.2022]. Nuestro país no puede aguantar más violencia entre protestantes y autoridades cada dos años; los agentes sociales debemos esforzarnos para que el Ecuador sea justamente eso: un país, y no un [licuador](https://www.instagram.com/p/CIbaLjPh5LW/?utm_source=ig_web_copy_link)[^1] al que le entregas algo íntegro y te lo devuelve triturado. Debemos exigir al resto y exigirnos a nosotros mismos la fuerza para construir un país de paz y prosperidad, pero también un país de queja y cambio pacífico cuando lo apremie.
+# Algunas implicaciones
+
+El análisis realizado nos permite llevarnos algunos puntos para pensar:
+
+- Los protestantes tienden a aprobar el derecho a la protesta (aunque no tanto), identificarse con algún ala política (derecha, izquierda o centro) y a desaprobar el trabajo del Presidente. Es menos probable encontrar manifestantes mujeres y blancos. 
+
+- Muchas características entre protestantes y no protestantes son similares: edad, años de escolaridad, la probabilidad de ser indígena, estar desempleado y tener una peor situación económica.
+
+- Se encuentra una clara divergencia entre la participación en protestas y el apoyo hacia las mismas, siendo el porcentaje de apoyo siempre mucho mayor al de participación.
+
+- Inquietantemente, el apoyo a las protestas se mueve en contra del apoyo al Presidente de turno. Mientras más popular el gobierno, menos respetado el derecho a la protesta.
+
+Es de innegable importancia el entendimiento de lo que implican las protestas, tanto para quienes las lideran y las enfrentan como para los ciudadanos comunes y corrientes. En mi opinión, es incluso más importante que el ecuatoriano promedio las comprenda, puesto que aquellos políticos, dirigentes y autoridades que las protagonizan rara vez los vemos en primera línea. Informar nuestra discusión sobre la coyuntura del país con hechos, relativamente libres de ideología y subjetividad, es extremadamente imperante para la formación de una mejor nación y la protección del derecho a la protesta pacífica, algo clave para el buen funcionamiento de una democracia [@Donoso.2018]. 
+
+Las protestas de junio 2022 finalizan con concesiones de ambas partes, pero que tristemente giran alrededor del precio de la gasolina, pateando hacia el mediano plazo la resolución de los otros problemas. No está claro cómo se pueden resolver los problemas del país, ya que una vez más las conversaciones iniciales se centraron en la cantidad del subsidio a la gasolina. La historia amenaza con repetirse en esta mesa de diálogo, recordando que en 2019 las protestas finalizaron por una estabilización del precio de la gasolina, pero los actores involucrados fueron incapaces de llegar a un acuerdo [@LAPOPReport.2022]. Nuestro país no puede aguantar más violencia entre protestantes y autoridades cada dos años; los agentes sociales debemos esforzarnos para que el Ecuador sea justamente eso: un país, y no un [licuador](https://www.instagram.com/p/CIbaLjPh5LW/?utm_source=ig_web_copy_link)[^1] al que le entregas algo íntegro y te lo devuelve triturado. Debemos exigir al resto y exigirnos a nosotros mismos la fuerza para construir un país de paz y prosperidad, pero también un país de queja y cambio pacífico cuando lo apremie.
 
 [^1]: Foto original de [\@ecuacultural](https://www.instagram.com/ecuacultural)
+[^2]: Un `r round(pol_prot %>% filter(protest == 1) %>% select(plscr_na)*100)`% de personas que protestantes reportan no tener identificación política, mientras que un porcentaje mayor de no protesantes (`r round(pol_prot %>% filter(protest == 0) %>% select(plscr_na)*100)`%) reporta lo mismo. Los grupos políticos a elegir en esta pregunta son "la izquierda" y "la derecha", denotados por una escala del 1 al 10. 
+[^3]: A diferencia de la tasa de desempleo normal, calculada sobre el total de población económicamente activa, esta tasa de desempleo se calcula sobre el total de personas en edad de votar, por lo que debemos tener cuidado comparando esta tasa con las reportadas por el INEC mensualmente.
 
 *Esta nota ha sido orgullosamente concebida desde R mediante RStudio. Visita el repositorio de [GitHub](https://github.com/dsanchezp18/protests-article) para replicar los cálculos y aprender un poco más sobre los datos, y no dudes en contactarnos con preguntas.*
 
