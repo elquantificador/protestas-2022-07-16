@@ -4,8 +4,8 @@ author: "Daniel Sánchez"
 date: "Julio 2022"
 output:
   word_document: default
-  html_document: default
   pdf_document: default
+  html_document: default
 csl: ieee.csl
 bibliography: refs-article-protests.bib
 ---
@@ -342,11 +342,11 @@ pol_prot<-
 
 [^1]: Un `r round(pol_prot %>% filter(protest == 1) %>% select(plscr_na)*100)`% de personas que protestan reportan no tener identificación política, mientras que un porcentaje mayor de no protesantes (`r round(pol_prot %>% filter(protest == 0) %>% select(plscr_na)*100)`%) reporta lo mismo. Los grupos políticos a elegir en esta pregunta son "la izquierda" y "la derecha", denotados por una escala del 1 al 10.
 
-¿Son quienes salen a las calles más pobres que quienes no protestan? No. De hecho, apenas el `r econ_sit_prot %>% filter(protest == 1) %>% select(econ_sitWorse)*100`% de quienes protestan consideran que su situación económica es peor que la de hace 12 meses. Este porcentaje es solo levemente mayor al porcentaje de no protestantes que consideran que su situación ha empeorado. De igual manera, la tasa histórica de desempleo [^2] de los protestantes no es estadísticamente diferente a la tasa de desempleo global de la muestra -salvo en 2014, donde sí existe una diferencia de diez puntos porcentuales-.
+¿Son quienes salen a las calles más pobres que quienes no protestan? No. De hecho, apenas el `round(r econ_sit_prot %>% filter(protest == 1) %>% select(econ_sitWorse)*100)`% de quienes protestan consideran que su situación económica es peor que la de hace 12 meses. Este porcentaje es solo levemente mayor al porcentaje de no protestantes que consideran que su situación ha empeorado. De igual manera, la tasa histórica de desempleo [^2] de los protestantes no es estadísticamente diferente a la tasa de desempleo global de la muestra -salvo en 2014, donde sí existe una diferencia de diez puntos porcentuales-.
 
 [^2]: A diferencia de la tasa de desempleo normal, calculada sobre el total de población económicamente activa, esta tasa de desempleo se calcula sobre el total de personas en edad de votar, por lo que debemos tener cuidado al compararla con las tasas reportadas por el [https://www.ecuadorencifras.gob.ec/enemdu-2021/](INEC) mensualmente.
 
-Un detalle clave sobre los protestantes es su composición racial y los datos de la encuesta permiten saber que *no* existen diferencias estadísticamente significativas entre los porcentajes históricos de protestantes y no protestantes indígenas. De hecho, el porcentaje que representan los indígenas sobre el total de manifestantes es cercano a solamente el 5% histórico desde 2006 a 2019. Esta cifra baja puede estar subestimada dado que no se realizan demasiadas encuestas en cantones rurales, donde la población indígena se concentra. Sin embargo, tiene sentido pensar que la cifra real no debería desviarse tanto de la que se presenta aquí, ya que actualmente la participación en protestas es algo menor al 8% y la población indígena llegaba a alrededor del `r round((1.1/17.3)*100,2)`% de la población total del Ecuador en 2020 [@Ortiz.2020]. Con esto se podría entender que es poco probable que la población indígena -al ser una minoría de la población total- constituya una mayoría aplastante de los manifestantes. Por otro lado, sí existe una diferencia considerable en el porcentaje de gente que se autoidentifica como blanca, en donde existe una diferencia significativa: es menos probable que un blanco proteste.
+Un detalle clave sobre los protestantes es su composición racial y los datos de la encuesta permiten saber que *no* existen diferencias estadísticamente significativas entre los porcentajes históricos de protestantes y no protestantes indígenas. De hecho, el porcentaje que representan los indígenas sobre el total de manifestantes es cercano a solamente el 5% histórico desde 2006 a 2019. Esta cifra baja puede estar subestimada dado que no se realizan demasiadas encuestas en cantones rurales, donde la población indígena se concentra. Sin embargo, tiene sentido pensar que la cifra real no debería desviarse tanto de la que se presenta aquí: al ser los indígenas una minoría de la población del país^[Para 2020, los indígenas constituían alrededor de un 6% de la población nacional [@Ortiz.2020].], es probable que también constituyen una minoría dentro de quienes participan en protestas. Por otro lado, sí existe una diferencia considerable en el porcentaje de gente que se autoidentifica como blanca, en donde existe una diferencia significativa: es menos probable que un blanco proteste.
 
 # Participación en protestas vs. apoyo al derecho de protesta
 

@@ -463,13 +463,15 @@ gestión del presidente. Aunque los protestantes, en general, son más
 jóvenes y más educados que quienes no protestan, la diferencia es casi
 negligible- contrario a lo que se pensaría-.</p>
 <p>¿Son quienes salen a las calles más pobres que quienes no protestan?
-No. De hecho, apenas el 32.7670624% de quienes protestan consideran que
-su situación económica es peor que la de hace 12 meses. Este porcentaje
-es solo levemente mayor al porcentaje de no protestantes que consideran
-que su situación ha empeorado. De igual manera, la tasa histórica de
-desempleo <a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> de los protestantes no es estadísticamente
-diferente a la tasa de desempleo global de la muestra -salvo en 2014,
-donde sí existe una diferencia de diez puntos porcentuales-.</p>
+No. De hecho, apenas el
+<code>round(r econ_sit_prot %&gt;% filter(protest == 1) %&gt;% select(econ_sitWorse)*100)</code>%
+de quienes protestan consideran que su situación económica es peor que
+la de hace 12 meses. Este porcentaje es solo levemente mayor al
+porcentaje de no protestantes que consideran que su situación ha
+empeorado. De igual manera, la tasa histórica de desempleo <a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> de los
+protestantes no es estadísticamente diferente a la tasa de desempleo
+global de la muestra -salvo en 2014, donde sí existe una diferencia de
+diez puntos porcentuales-.</p>
 <p>Un detalle clave sobre los protestantes es su composición racial y
 los datos de la encuesta permiten saber que <em>no</em> existen
 diferencias estadísticamente significativas entre los porcentajes
@@ -479,13 +481,11 @@ es cercano a solamente el 5% histórico desde 2006 a 2019. Esta cifra
 baja puede estar subestimada dado que no se realizan demasiadas
 encuestas en cantones rurales, donde la población indígena se concentra.
 Sin embargo, tiene sentido pensar que la cifra real no debería desviarse
-tanto de la que se presenta aquí, ya que actualmente la participación en
-protestas es algo menor al 8% y la población indígena llegaba a
-alrededor del 6.36% de la población total del Ecuador en 2020 <span class="citation">[11]</span>. Con esto se podría entender que es poco
-probable que la población indígena -al ser una minoría de la población
-total- constituya una mayoría aplastante de los manifestantes. Por otro
-lado, sí existe una diferencia considerable en el porcentaje de gente
-que se autoidentifica como blanca, en donde existe una diferencia
+tanto de la que se presenta aquí: al ser los indígenas una minoría de la
+población del país<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>, es probable que también constituyen una
+minoría dentro de quienes participan en protestas. Por otro lado, sí
+existe una diferencia considerable en el porcentaje de gente que se
+autoidentifica como blanca, en donde existe una diferencia
 significativa: es menos probable que un blanco proteste.</p>
 </div>
 <div id="participación-en-protestas-vs.-apoyo-al-derecho-de-protesta" class="section level1">
@@ -503,7 +503,7 @@ a protestar tanto en general como de grupos de oposición ha sido
 aprobado por la mayoría de la población en edad de votar, salvo en el
 2012 y en el 2014. En un principio, más ecuatorianos apoyan las
 protestas en general que las protestas de los grupos en contra del
-gobierno actual<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>. Sin embargo, la relación se invierte para
+gobierno actual<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>. Sin embargo, la relación se invierte para
 2016, cerca del fin del gobierno de Correa, en donde era más probable
 que una persona apruebe las protestas contra el actual gobierno que las
 protestas en general.</p>
@@ -569,14 +569,14 @@ gobierno</caption>
 </tbody>
 </table>
 </div>
-<p>La tabla anterior nos muestra el porcentaje de aprobación Otra
-incoherencia surge de una tabulación cruzada entre apoyo y participación
-en protestas. Como se esperaría, un protestante es más propenso a
-aprobar el derecho de protestar que alguien que no ha protestado. Sin
-embargo, también se esperaría que quienes aprueben el derecho a
-protestar sean la mayoría aplastante dentro de los participantes, pero
-existe un 26% de ellos que no lo han aprobado históricamente. Respecto
-al apoyo a las protestas de los grupos de oposición al gobierno, los
+<p>La tabla anterior nos muestra el porcentaje histórico de dos tipos de
+aprobación a las protestas clasificado por la participación en
+protestas. Como se esperaría, un protestante es más propenso a aprobar
+el derecho de protestar que alguien que no ha protestado. Sin embargo,
+también se esperaría que quienes participan en protestas aprueben
+ampliamente el derecho a protestar en cualquier ámbito, pero existe un
+26% de ellos que <em>no</em> lo han aprobado históricamente. Respecto al
+apoyo a las protestas de los grupos de oposición al gobierno, los
 porcentajes son peores: históricamente un 38% de protestantes no aprueba
 ese derecho. Este es un fenómeno extraño y preocupante que merece ser
 observado más a fondo en el futuro, con datos actualizados.</p>
@@ -584,50 +584,52 @@ observado más a fondo en el futuro, con datos actualizados.</p>
 </div>
 <div id="algunas-implicaciones" class="section level1">
 <h1>Algunas implicaciones</h1>
-<p>El análisis realizado nos permite llevarnos algunos puntos para
-pensar:</p>
+<p>El análisis realizado se puede resumir en los siguientes puntos:</p>
 <ul>
-<li><p>Los protestantes tienden a aprobar el derecho a la protesta
-(aunque no tanto), identificarse con algún ala política (derecha,
-izquierda o centro) y a desaprobar el trabajo del Presidente. Es menos
-probable encontrar manifestantes mujeres y blancos.</p></li>
-<li><p>Muchas características entre protestantes y no protestantes son
-similares: edad, años de escolaridad, la probabilidad de ser indígena,
-estar desempleado y tener una peor situación económica.</p></li>
+<li><p>Los protestantes tienden a aprobar el derecho a protestar (aunque
+no tanto), identificarse con algún ala política (derecha, izquierda o
+centro) y a desaprobar el trabajo del presidente. Es menos probable
+encontrar manifestantes mujeres y blancos.</p></li>
+<li><p>No existen diferencias significativas entre protestantes y no
+protestantes en cuanto a edad, años de escolaridad, la probabilidad de
+ser indígena, estar desempleado y tener una peor situación
+económica.</p></li>
 <li><p>Se encuentra una clara divergencia entre la participación en
-protestas y el apoyo hacia las mismas, siendo el porcentaje de apoyo
-siempre mucho mayor al de participación.</p></li>
-<li><p>Inquietantemente, el apoyo a las protestas se mueve en contra del
-apoyo al Presidente de turno. Mientras más popular el gobierno, menos
-respetado el derecho a la protesta.</p></li>
+protestas y la aprobación de las mismas, siendo siempre el porcentaje de
+aprobación mucho mayor al de participación.</p></li>
+<li><p>Inquietantemente, la aprobación a las protestas se mueve en
+contra del apoyo al presidente de turno. Mientras más popular el
+gobierno, menos respetado el derecho a la protesta.</p></li>
 </ul>
-<p>Es de innegable importancia el entendimiento de lo que implican las
-protestas, tanto para quienes las lideran y las enfrentan como para los
-ciudadanos comunes y corrientes. En mi opinión, es incluso más
-importante que el ecuatoriano promedio las comprenda, puesto que
-aquellos políticos, dirigentes y autoridades que las protagonizan rara
-vez los vemos en primera línea. Es repugnante justificar la violencia
-del estado hacia la protesta social, así como la minimización de los
-problemas que aquejan al índigena<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>, pero la violencia por parte de
-protestantes es igual de repugnante. Informar nuestra discusión sobre la
-coyuntura del país con hechos, relativamente libres de ideología y
+<p>Es necesario entender lo que implican las protestas, tanto para
+quienes las lideran y las enfrentan como para los ciudadanos comunes y
+corrientes. En mi opinión, es incluso más importante que el ecuatoriano
+promedio las comprenda, puesto que son ellos los que suelen estar en
+primera línea de las manifestaciones a diferencia de aquellos políticos,
+dirigentes y autoridades que las protagonizan. No es justificable la
+violencia del estado hacia la protesta social, así como la minimización
+de los problemas que aquejan a las comunidades índigenas<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a>, pero la violencia por
+parte de protestantes tampoco puede justificarse. Informar nuestra
+discusión sobre la coyuntura del país con hechos, libres de ideología y
 subjetividad, es extremadamente imperante para encaminarnos hacia una
 mejor nación, evitando la violencia y polarización social así como
 protegiendo el derecho a la protesta pacífica, clave para el buen
 funcionamiento de una democracia <span class="citation">[12]</span>.</p>
 <p>Las protestas de junio 2022 finalizan con concesiones de ambas
-partes, pero que tristemente giran alrededor del precio de la gasolina,
-pateando hacia el mediano plazo la resolución de los otros problemas. La
-historia amenaza con repetirse en esta mesa de diálogo, recordando que
-en 2019 las protestas finalizaron por una estabilización del precio de
-la gasolina, pero los actores involucrados fueron incapaces de llegar a
-un acuerdo <span class="citation">[6]</span>. Nuestro país no puede
-aguantar más violencia entre protestantes y autoridades cada dos años;
-los agentes sociales debemos esforzarnos para que el Ecuador sea
-justamente eso: un país, y no un <a href="https://www.instagram.com/p/CIbaLjPh5LW/?utm_source=ig_web_copy_link">licuador</a><a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a> al que le
+partes, las cuales desafortunadamente solo giran alrededor del precio de
+la gasolina, postergando hacia el mediano plazo la resolución de los
+otros problemas como la obtención de precios justos para los productores
+agrícolas y el manejo de la crisis de inseguridad. La historia amenaza
+con repetirse en esta mesa de diálogo, recordando que en el 2019 las
+protestas finalizaron por una estabilización del precio de la gasolina
+aunque los actores involucrados fueron incapaces de llegar a un acuerdo
+<span class="citation">[6]</span>. Nuestro país no puede aguantar más
+violencia entre protestantes y autoridades cada dos años; los agentes
+sociales deben esforzarse para que el Ecuador sea justamente eso: un
+país, y no un <a href="https://www.instagram.com/p/CIbaLjPh5LW/?utm_source=ig_web_copy_link">licuador</a><a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a> al que le
 entregas algo íntegro y te lo devuelve triturado. Debemos exigir al
 resto y exigirnos a nosotros mismos la fuerza para construir un país de
-paz y prosperidad, pero también un país de queja y cambio pacífico
+paz y prosperidad, pero también un país de cambio pacífico y efectivo
 cuando lo apremie.</p>
 <p><em>Esta nota ha sido orgullosamente concebida desde R mediante
 RStudio. Visita el repositorio de <a href="https://github.com/dsanchezp18/protests-article">GitHub</a> para
@@ -726,12 +728,14 @@ desempleo se calcula sobre el total de personas en edad de votar, por lo
 que debemos tener cuidado al compararla con las tasas reportadas por el
 <a href="INEC">https://www.ecuadorencifras.gob.ec/enemdu-2021/</a>
 mensualmente.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
-<li id="fn3"><p>La pregunta original realizada en la encuesta pregunta
+<li id="fn3"><p>Para 2020, los indígenas constituían alrededor de un 6%
+de la población nacional <span class="citation">[11]</span>.<a href="#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>La pregunta original realizada en la encuesta pregunta
 sobre el grado de aprobación a la posibilidad de las personas que
 “siempre hablan mal de la forma de gobierno actual y del sistema de
-gobierno” <span class="citation">[12]</span>.<a href="#fnref3" class="footnote-back">↩︎</a></p></li>
-<li id="fn4"><p>Véase, por ejemplo, <span class="citation">[13]</span>.<a href="#fnref4" class="footnote-back">↩︎</a></p></li>
-<li id="fn5"><p>Imagen original de <a href="https://www.instagram.com/ecuacultural">@ecuacultural</a>.<a href="#fnref5" class="footnote-back">↩︎</a></p></li>
+gobierno” <span class="citation">[12]</span>.<a href="#fnref4" class="footnote-back">↩︎</a></p></li>
+<li id="fn5"><p>Véase, por ejemplo, <span class="citation">[13]</span>.<a href="#fnref5" class="footnote-back">↩︎</a></p></li>
+<li id="fn6"><p>Imagen original de <a href="https://www.instagram.com/ecuacultural">@ecuacultural</a>.<a href="#fnref6" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 
