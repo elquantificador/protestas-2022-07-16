@@ -98,6 +98,6 @@ Las protestas de junio 2022 finalizan con concesiones de ambas partes, las cuale
 
 [^5]: Imagen original de [\@ecuacultural](https://www.instagram.com/ecuacultural).
 
-*Esta nota ha sido orgullosamente concebida desde R mediante RStudio. Visita el repositorio de [GitHub](https://github.com/dsanchezp18/protests-article) para replicar los cálculos y aprender un poco más sobre los datos, y no dudes en contactarnos con preguntas.*
+*Esta nota ha sido orgullosamente concebida desde R mediante RStudio. Visita el repositorio de [GitHub](https://github.com/dsanchezp18/protests-article) para replicar los cálculos y aprender un poco más sobre los datos, y no dudes en contactarnos con preguntas. Este artículo utilizó las bases de datos de acceso libre del Barómetro de las Américas, por lo que agradecemos al proyecto de Opinión Pública de América Latina (LAPOP) y a sus principales donantes (la Agencia de los Estados Unidos para el Desarrollo Internacional, el Programa de las Naciones Unidas para el Desarrollo, el Banco Interamericano de Desarrollo y Vanderbilt University) por poner a disposición los datos.*
 
 \

@@ -88,7 +88,7 @@ prot_df<-
 # Guardar en un objeto el caption largo:
 
 caption_grafo1<-
-  'Nota: Datos del Barómetro de las Américas. Las barras representan intervalos de confianza del 95% con errores ajustados por diseño muestral multietapa estratificado. Las líneas punteadas representan protestas de importancia en el país. Las encuestas fueron realizadas de enero a marzo de cada año, excepto la ronda 2016, realizada de noviembre 2016 a enero 2017. Las cifras representan el porcentaje de personas que han protestado en los últimos 12 meses sobre el total de personas en edad de votar (mayores a 16).'
+  'Fuente: El Barómetro de las Américas por el Proyecto de Opinión Pública de América Latina (LAPOP), www.LapopSurveys.org. Las barras representan intervalos de confianza del 95% con errores ajustados por diseño muestral multietapa estratificado. Las líneas punteadas representan protestas de importancia en el país. Las encuestas fueron realizadas de enero a marzo de cada año, excepto la ronda 2016, realizada de noviembre 2016 a enero 2017. Las cifras representan el porcentaje de personas que han protestado en los últimos 12 meses sobre el total de personas en edad de votar (mayores a 16).'
 
 # Ahora si nuestro gráfico
 
@@ -330,7 +330,7 @@ pol_graph<-
 # Caption largo
 
 caption_grafo2<-
-  'Nota: Datos del Barómetro de las Américas. Las barras representan intervalos de confianza al 95% con errores ajustados por diseño muestral multietapa y estratificado. Las encuestas fueron realizadas de enero a marzo de cada año excepto la ronda 2016, realizada de noviembre 2016 a enero 2017. Las líneas punteadas en gris representan los límites inferiores y superiores del intervalo de confianza al 95%. El porcentaje que aprueba las protestas se calcula para quienes responden números mayores a 4 (del 1 al 10). El porcentaje que confía en el Presidente se calcula para quienes responden números mayores a 4 (del 1 al 7) mientras que la aprobación se calcula para quienes responden números mayores a 3 (del 1 al 5). Los porcentajes son sobre el total de personas en edad de votar (mayores a 16) del Ecuador.'
+  'Fuente: El Barómetro de las Américas por el Proyecto de Opinión Pública de América Latina (LAPOP), www.LapopSurveys.org. Las barras representan intervalos de confianza al 95% con errores ajustados por diseño muestral multietapa y estratificado. Las encuestas fueron realizadas de enero a marzo de cada año excepto la ronda 2016, realizada de noviembre 2016 a enero 2017. Las líneas punteadas en gris representan los límites inferiores y superiores del intervalo de confianza al 95%. El porcentaje que aprueba las protestas se calcula para quienes responden números mayores a 4 (del 1 al 10). El porcentaje que confía en el Presidente se calcula para quienes responden números mayores a 4 (del 1 al 7) mientras que la aprobación se calcula para quienes responden números mayores a 3 (del 1 al 5). Los porcentajes son sobre el total de personas en edad de votar (mayores a 16) del Ecuador.'
 
 # Ahora si se presenta ambos gráficos
 
