@@ -20,6 +20,9 @@ if(!require(openxlsx)) install.packages("openxlsx", repos = "http://cran.us.r-pr
 
 source('code/protestas_download.R')
 
+# Esta base de datos se construye a partir de los datos abiertos que LAPOP provee al público- si quieres observar como se ha construido la base,
+# puedes entrar al script 'protestas_data_manipulation.R' y a mi repositorio hbc-v2.
+
 # ---- FORMATOS ----
 
 # Definimos algunos formatos para utilizar después
@@ -113,7 +116,7 @@ prot_part_graf<-
   theme_article_ds+
   theme(axis.ticks = element_blank())
 
-ggsave("images/graf1-participacion-protestas.pdf", device = "pdf", width = 12.5, height = 7)
+ggsave("images/graf1-participacion-protestas.png", device = "png", width = 12.5, height = 7, dpi = 900)
 
 # Algunas cifras para el texto:
 
@@ -339,7 +342,7 @@ protestas_graph + pol_graph +
                   theme = theme(plot.caption = element_text(hjust = 0, face = 'italic'),
                                 plot.title = element_text(hjust = 0.5)))
 
-ggsave("images/graf2-politica-y-protestas.pdf", device = "pdf", width = 12.5, height = 7)
+ggsave("images/graf2-politica-y-protestas.png", device = "png", width = 12.5, height = 7, dpi = 900)
 
 # Tabulaciones cruzadas finales para %'s presentados al final y generación de la tabla:
 
