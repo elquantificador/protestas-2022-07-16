@@ -1,9 +1,8 @@
-# ---- DIRECTORIO DE TRABAJO ----
+# ANÁLISIS DE DATOS
+# Daniel Sánchez
+# El Quantificador
 
-current.path <- dirname(rstudioapi::getActiveDocumentContext()$path)
-setwd(current.path)
-setwd("..")
-# list.files()
+list.files()
 
 # ---- LIBRERIAS ----
 
