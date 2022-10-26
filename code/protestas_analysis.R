@@ -93,8 +93,7 @@ caption_grafo1<-
 
 prot_part_graf<- 
   ggplot(prot_df, aes(x = year, y = protest))+
-  geom_col(fill = quant_blue,# ---- LIBRERIAS ----
-
+  geom_col(fill = quant_blue,
            color = 'black', 
            width = 0.7)+
   geom_vline(xintercept = 0.5, linetype = 'dotted', color = quant_red, size = 1.25)+
