@@ -17,7 +17,9 @@ if(!require(openxlsx)) install.packages("openxlsx", repos = "http://cran.us.r-pr
 
 # Cargamos los datos de forma dinámica haciendo source al script de carga de datos
 
-source('code/protestas_download.R')
+# source('code/protestas_download.R')
+
+df <- read.csv('data/protests_data.csv') # Esta es la misma base de datos que está subida en nuestro drive. Un error de paquetes no me permite descargar.
 
 # Esta base de datos se construye a partir de los datos abiertos que LAPOP provee al público- si quieres observar como se ha construido la base,
 # puedes entrar al script 'protestas_data_manipulation.R' y a mi repositorio hbc-v2.
@@ -228,6 +230,8 @@ japrov_time<-svyby(~ pres_aprov_dic,
 
 # Confidence in the president
 
+lapop_des$variables$pres_conf_dic <- as.factor(lapop_des$variables$pres_conf_dic)
+
 pconf_time<-svyby(~ pres_conf_dic, 
                   ~ year, 
                   design = lapop_des,
@@ -357,4 +361,5 @@ summ4<-
         design = lapop_des,
         svymean,
         na.rm = T)
+
 
