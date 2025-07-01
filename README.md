@@ -1,4 +1,4 @@
-# [Una perspectiva cuantitativa sobre las protestas en Ecuador](https://elquantificador.org/post/valores/perspectiva-cuantitativa-protestas-ecuador/)
+# [Una perspectiva cuantitativa sobre las protestas en Ecuador](https://elquantificador.blog/post/valores/perspectiva-cuantitativa-protestas-ecuador/)
 
 Este repositorio almacena toda la información necesaria para el análisis de participación en protestas en Ecuador utilizando la encuesta de LAPOP.
 
