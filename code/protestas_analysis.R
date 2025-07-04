@@ -2,8 +2,6 @@
 # Daniel Sánchez
 # El Quantificador
 
-list.files()
-
 # ---- LIBRERIAS ----
 
 # Este código es para instalar las librerías que necesite el usuario para compilar el código
