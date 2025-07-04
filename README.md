@@ -13,4 +13,4 @@ Este repositorio contiene el código y los archivos necesarios para analizar la 
 3. Corre `code/protestas_data_manipulation.R` para procesar y guardar las bases de datos.
 4. Finalmente ejecuta `code/protestas_analysis.R` para generar las figuras y el artículo.
 
-El proyecto se basa en parte en mi trabajo de tesis de pregrado, [Honesty By Convenience: Corruption Tolerance in Ecuador](https://daniel-ec.netlify.app/research.html). Puedes revisar [hbc-prelim](https://github.com/dsanchezp18/hbc-prelim) y [hbc-v2](https://github.com/dsanchezp18/hbc-v2) para ver los scripts originales de manipulación de datos.
+Para mas información, revisa el perfil de GitHub del [autor](https://github.com/dsanchezp18)
