@@ -13,4 +13,4 @@ Este repositorio contiene el código y los archivos necesarios para analizar la 
 3. Corre `code/protestas_data_manipulation.R` para procesar y guardar las bases de datos.
 4. Finalmente ejecuta `code/protestas_analysis.R` para generar las figuras y el artículo.
 
-Para mas información, revisa el perfil de GitHub del [autor](https://github.com/dsanchezp18)
+Para mas información, revisa el perfil de GitHub del [autor](https://github.com/dsanchezp18).
