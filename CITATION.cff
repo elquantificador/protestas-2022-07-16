@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "Si usas este material, cítalo con estos datos."
+title: "Repositorio del artículo de Daniel Sánchez: 'Una perspectiva cuantitativa sobre las protestas en Ecuador'"
+type: dataset
+authors:
+  - name: "El Quantificador (LIDE)"
+    website: "https://elquantificador.org/"
+repository-code: "https://github.com/elquantificador/protestas-2022-07-16"
+license: MIT
+# Agrega aquí a las personas autoras del artículo cuando corresponda.
