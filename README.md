@@ -14,3 +14,17 @@ Este repositorio contiene el código y los archivos necesarios para analizar la 
 4. Finalmente ejecuta `code/protestas_analysis.R` para generar las figuras y el artículo.
 
 Para mas información, revisa el perfil de GitHub del [autor](https://github.com/dsanchezp18).
+
+
+## Licencias y cómo citar
+
+- **Código:** [MIT](LICENSE).
+- **Texto, figuras y tablas:** [CC BY-NC 4.0](LICENSE-content).
+- **Datos de terceros:** conservan los términos de su fuente
+  ([aviso](DATA-NOTICE.md)).
+- **Nombre y logotipos:** todos los derechos reservados.
+
+Las cifras y resultados pueden citarse libremente. Menciona a los autores y a
+El Quantificador (LIDE) y enlaza la publicación original. Los usos comerciales
+de gráficos, tablas o texto requieren autorización previa:
+elquantificador@laboratoriolide.org. Ver también `CITATION.cff`.

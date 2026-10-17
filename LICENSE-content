@@ -1,0 +1,33 @@
+# Licencia del contenido
+
+Copyright (c) 2026 Laboratorio de Investigación para el Desarrollo del Ecuador (LIDE). Los derechos sobre el material elaborado por
+quienes colaboran con El Quantificador pertenecen a LIDE.
+
+## Qué cubre
+
+El texto, las figuras, las tablas y los documentos elaborados en este
+repositorio se distribuyen bajo la licencia Creative Commons
+Atribución-NoComercial 4.0 Internacional (CC BY-NC 4.0).
+
+- Texto legal: https://creativecommons.org/licenses/by-nc/4.0/legalcode.es
+- Resumen: https://creativecommons.org/licenses/by-nc/4.0/deed.es
+
+Puedes compartir y adaptar este contenido sin fines comerciales, con crédito
+adecuado, enlace a la licencia e indicación de los cambios que hagas.
+
+## Qué no cubre
+
+- **Código.** Se rige por la licencia MIT del archivo `LICENSE`.
+- **Datos de terceros.** Los datos de origen (INEC, LAPOP, WVS u otras fuentes)
+  conservan los términos de quien los publica. Ver `DATA-NOTICE.md` cuando
+  exista.
+- **Nombre y logotipos.** "El Quantificador", "LIDE" y su identidad visual no
+  están cubiertos por ninguna licencia abierta.
+- **Cifras y hechos.** Pueden citarse libremente. Te pedimos que nombres a los
+  autores y a El Quantificador (LIDE) y que enlaces la publicación original.
+
+## Uso comercial
+
+Para usar este contenido con fines comerciales, escríbenos antes a
+elquantificador@laboratoriolide.org. Reproducir gráficos, tablas o texto para
+promocionar cursos, productos o servicios requiere autorización previa.
