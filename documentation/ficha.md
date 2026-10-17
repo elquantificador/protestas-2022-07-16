@@ -8,49 +8,49 @@ repositorios.
 
 - **Título:** Una perspectiva cuantitativa sobre las protestas en Ecuador
 - **Descripción del repositorio:** Repositorio del artículo de Daniel Sánchez: "Una perspectiva cuantitativa sobre las protestas en Ecuador"
-- **Autoría:** [COMPLETAR: nombres, igual que en el sitio]
-- **Fecha de publicación:** [COMPLETAR: AAAA-MM-DD]
-- **Artículo publicado:** [COMPLETAR: enlace a elquantificador.org]
-- **Categoría:** [COMPLETAR: Economía, Política, Salud, Educación o Valores y
-  comportamiento]
-- **Edición:** [COMPLETAR: por ejemplo, Julio-Diciembre 2026]
+- **Autoría:** Daniel Sánchez Pazmiño
+- **Fecha de publicación:** 2022-07-16
+- **Artículo publicado:** https://elquantificador.org/post/valores/perspectiva-cuantitativa-protestas-ecuador/
+- **Categoría:** Política; Valores y comportamiento (el sitio lista ambas)
+- **Edición:** Julio 2022-Enero 2023
 
 ## Estado
 
-[COMPLETAR: en preparación, en revisión editorial o publicado. Anota qué falta
-para cerrar el artículo.]
+Publicado el 2022-07-16. En el sitio, el repositorio enlazado es `dsanchezp18/protests-article`; este es su repositorio en la organización.
 
 ## Pregunta y alcance
 
-[COMPLETAR: dos o tres oraciones con la pregunta, el periodo, la cobertura
-geográfica y la unidad de análisis.]
+El artículo usa el Barómetro de las Américas de LAPOP para describir cómo se comportan los ecuatorianos frente a las protestas tras los 18 días de movilizaciones de junio de 2022: quiénes participan en protestas y cómo se relaciona esa participación con el respeto al derecho a protestar, la aprobación presidencial y la identificación política. La cobertura es nacional; la encuesta incluye preguntas sobre protestas desde 2006 y su última ronda con esas preguntas fue a inicios de 2019. La unidad de análisis es la persona encuestada.
 
 ## Requisitos
 
-- R [COMPLETAR: versión, por ejemplo 4.5.x].
-- Paquetes de R: [COMPLETAR: lista en orden alfabético].
+- R: no documentada en el repositorio.
+- Paquetes de R: broom, car, haven, openxlsx, patchwork, survey, tidyverse. `protestas_analysis.R` los instala si faltan y `protestas_data_manipulation.R` los carga con `library()`.
 
 ## Fuentes de datos
 
 | Fuente | Institución | Periodo | Acceso | Script |
 |---|---|---|---|---|
-| [COMPLETAR] | [COMPLETAR] | [COMPLETAR] | [COMPLETAR: descarga automática o manual] | `code/cleaning/00_download_fuente.R` |
+| Barómetro de las Américas, bases públicas de Ecuador por ola (`.dta`) | Latin American Public Opinion Project (LAPOP), Vanderbilt University | 2004 a 2021 (la batería de protestas, de 2006 a 2019) | Manual: descarga desde el sitio de LAPOP | `code/protestas_data_manipulation.R` |
+| Base consolidada de LAPOP para el análisis (archivo `.Rdata` en Google Drive) | LIDE, a partir de los datos públicos de LAPOP | 2004 a 2019 | Descarga automática desde Google Drive (id `1vthrTkGdU6BaNO-xOC9fF1f3g1NItYJc`) | `code/protestas_download.R` |
 
-Si alguna fuente no permite descarga automática, explica aquí cómo obtenerla y
-dónde colocarla en `data/raw/`.
+Enlace de LAPOP citado en el script: http://datasets.americasbarometer.org/database/index.php?freeUser=true. Para correr `code/protestas_data_manipulation.R` hay que colocar los archivos `ecu2004.dta` a `ecu2021.dta` en `data/dta/` (la carpeta `data/` no se versiona). El script también lee `data/csv/df20XX.csv` y `data/rdata/LAPOP 2004-2019 Merged.Rdata`; el origen de esos archivos no está documentado en el repositorio.
 
 ## Salidas
 
-- `outputs/tables/[COMPLETAR].csv`: [COMPLETAR: qué contiene].
-- `outputs/graphs/[COMPLETAR].png`: [COMPLETAR: qué muestra].
-- `article/images/graficoN.png`: copias numeradas según el orden del texto.
+- `images/graf1-participacion-protestas.png`: participación en protestas en Ecuador a lo largo de las olas de la encuesta.
+- `images/graf2-politica-y-protestas.png`: relación entre variables políticas y la participación en protestas.
+- `data/rdata/LAPOP AAAA Manipulated Dataframe.Rdata` (y las versiones combinadas 2004-2019, 2004-2021 y 2014-2016): bases procesadas que guarda `code/protestas_data_manipulation.R`; no están versionadas.
+- `report/texto-articulo.Rmd`, `.html` y `.docx`: texto del artículo; el Rmd carga las figuras desde `images/`.
 
 ## Cómo replicar en este repositorio
 
-Este repositorio conserva sus instrucciones originales en la sección
-"README anterior". Si todavía no tiene `MASTER.R`, sigue esas instrucciones.
-Cuando se migre a la estructura estándar, reemplaza esta sección por los pasos
-de `MASTER.R`.
+El README anterior da tres pasos, que coinciden con los scripts. Abre `protests-article.Rproj` y corre desde la raíz.
+
+1. `code/protestas_download.R`: descarga la base consolidada desde Google Drive a un archivo temporal y la carga en memoria con `load()`.
+2. `code/protestas_data_manipulation.R`: procesa las bases de LAPOP y guarda las bases manipuladas en `data/rdata/`. Necesita los archivos de LAPOP colocados a mano (ver "Fuentes de datos"). El propio script advierte que debe correrse completo cada vez.
+3. `code/protestas_analysis.R`: hace `source('code/protestas_download.R')` por su cuenta, de modo que obtiene los datos de Drive y no de los archivos del paso 2, y genera las dos figuras en `images/`. Por eso el paso 2 solo hace falta para reconstruir la base desde LAPOP.
+4. Para ver el artículo, abre `report/texto-articulo.Rmd` y usa Knit.
 
 ## README anterior
 

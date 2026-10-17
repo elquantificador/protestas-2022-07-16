@@ -1,0 +1,3 @@
+source_name,institution,period,official_url,downloaded_file,script
+"Barómetro de las Américas, bases públicas de Ecuador (.dta por ola)","Latin American Public Opinion Project (LAPOP), Vanderbilt University",2004-2021,http://datasets.americasbarometer.org/database/index.php?freeUser=true,data/dta/ecu2004.dta a data/dta/ecu2021.dta,manual
+Base consolidada de LAPOP para el análisis (Google Drive),"LIDE, a partir de datos públicos de LAPOP",2004-2019,https://drive.google.com/uc?export=download&id=1vthrTkGdU6BaNO-xOC9fF1f3g1NItYJc,ninguno (se carga en memoria desde un archivo temporal),code/protestas_download.R
